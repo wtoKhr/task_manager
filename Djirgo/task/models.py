@@ -7,10 +7,8 @@ class Task(models.Model):
     text = models.TextField(
         'Текст поста'
     )
-    # pub_date = models.DateTimeField(
-    #     'Дата публикации',
-    #     auto_now_add=True,
-    # )
+    #birth_year = models.IntegerField(blank=True, null=True)
+    pub_date = models.DateTimeField(auto_now_add=True)
     # owner = models.ForeignKey(
     #     User,
     #     on_delete=models.CASCADE)

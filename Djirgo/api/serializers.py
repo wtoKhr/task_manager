@@ -6,5 +6,5 @@ from task.models import Task
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields = ('text',) #тут проблема с полями
-        # fields = '__all__'
+        fields = ('text','pub_date') #тут проблема с полями
+        #fields = '__all__'
