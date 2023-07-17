@@ -2,12 +2,13 @@ from rest_framework.routers import SimpleRouter
 
 from django.urls import include, path
 
-from .views import TaskViewSet
+from .views import TaskViewSet, UserViewSet
 
 
 router = SimpleRouter()
 
-router.register('tasks', TaskViewSet)
+router.register(r'tasks', TaskViewSet)
+router.register(r'users', UserViewSet)
 
 
 urlpatterns = [
