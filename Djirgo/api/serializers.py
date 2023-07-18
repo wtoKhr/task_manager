@@ -1,22 +1,22 @@
 from rest_framework import serializers
-
+from rest_framework.relations import SlugRelatedField
 from task.models import Task, User
 import datetime
-
+    
 
 class TaskSerializer(serializers.ModelSerializer):
-    age = serializers.SerializerMethodField()
-    owner = serializers.PrimaryKeyRelatedField(read_only=True)
+    perform_time = serializers.SerializerMethodField()
+    owner = SlugRelatedField(slug_field='username', read_only=True)
+    performer = SlugRelatedField(slug_field='username', read_only=True)
     
     class Meta:
         model = Task
-        #fields = ('text', 'pub_date',) #тут проблема с полями , 'age'
-        fields = '__all__'
-        #read_only_fields = ('owner',)
+        fields = ('id','task_status', 'owner', 'text', 'pub_date','performer', 'perform_time',)
+        #fields = '__all__'
 
-    def get_age(self, obj):
-        age = obj.update_date - obj.pub_date
-        total_seconds = age.total_seconds()
+    def get_perform_time(self, obj):
+        perform_time = obj.update_date - obj.pub_date
+        total_seconds = perform_time.total_seconds()
         hours = int(total_seconds // 3600)
         minutes = int((total_seconds % 3600) // 60)
         seconds = int(total_seconds % 60)
